@@ -1,5 +1,10 @@
 # Set up
-* ~~docker build -t buhtiarov_is_task5 .~~
-* ~~docker run -p 8080:8080 -it --rm buhtiarov_is_task5~~
-* docker-compose up
-* docker compose down
+* docker swarm init
+* docker service create --name registry --publish 10000:10000 registry:2
+
+* docker-compose build spring-boot-docker
+* docker-compose push spring-boot-docker
+* docker stack deploy --compose-file docker-compose.yml docker-spring-boot-task9
+
+## Check status
+* docker stack services docker-spring-boot-task9

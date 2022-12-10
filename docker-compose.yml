@@ -2,6 +2,7 @@ version: "3.8"
 
 services:
   spring-boot-docker:
+    image: 127.0.0.1:10000/spring-boot-docker
     build:
       context: ./
       dockerfile: Dockerfile
@@ -14,9 +15,13 @@ services:
       - SPRING_DATASOURCE_USERNAME=postgres
       - SPRING_DATASOURCE_PASSWORD=postgres
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+    deploy:
+      mode: replicated
+      replicas: 4
   db:
     image: postgres:14.1-alpine
     restart: always
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
+
